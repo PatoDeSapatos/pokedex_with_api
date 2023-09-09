@@ -96,7 +96,7 @@ function App() {
         { !notFound ? (
           <Pokedex pokemon={pokemon} loading={loading} page={page} totalPages={totalPages} setPage={setPage} />
         ) : (
-          <div>Pesquisa não encontrada</div>
+          <div className="message">Pesquisa não encontrada</div>
         )}
       </div>
     </FavoriteProvider>

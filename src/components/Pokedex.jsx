@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Pokemon from "./Pokemon";
 import Pagination from "./Pagination";
 
@@ -32,7 +32,7 @@ const Pokedex = ( props ) => {
                 />
             </header>
         {loading ? (
-            <div>Carregando...</div>
+            <div className="message">Carregando...</div>
         ) : (
             <div className="pokedex-grid">
                 {pokemon && pokemon.map((pokemon, index) => {
