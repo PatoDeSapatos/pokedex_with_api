@@ -4,11 +4,11 @@ export const searchPokemon = async ( pokemon ) => {
         const response = await fetch(url);
         return await response.json();
     } catch ( error ) {
-        console.error( error );
+        console.error(error);
     }
 }
 
-export const getPokemon = async ( limit = 50, offset = 0 ) => {
+export const getPokemon = async ( limit = 51, offset = 0 ) => {
     try {
         let url = `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`;
         const response = await fetch(url);

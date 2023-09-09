@@ -1,22 +1,20 @@
-import React, {useState} from "react";
-import { searchPokemon } from "../api";
+import React, {useContext, useState} from "react";
+import FavoriteContext from "../contexts/favoriteContext";
 
-const Searchbar = () => {
+const Searchbar = ( props ) => {
     const [search, setSearch] = useState("ditto");
-    const [pokemon, setPokemon] = useState();
+    const {onSearch} = props;
 
     const onChangeHandler = (e) => {
-        console.log("pokemon: ", e.target.value);
-        setSearch(e.target.value);
+        const searchValue = e.target.value.toLowerCase();
+        setSearch(searchValue);
+        if (searchValue == "") {
+            onSearch(undefined);
+        }
     }
 
     const onButtonHandler = () => {
-        onSearchHandler( search );
-    }
-
-    const onSearchHandler = async ( pokemon ) => {
-        const result = await searchPokemon( pokemon );
-        setPokemon( result );
+        onSearch( search );
     }
 
     return (
@@ -29,14 +27,6 @@ const Searchbar = () => {
                 <button onClick={onButtonHandler}>Buscar</button>
             </div>
 
-
-            {pokemon ? (
-                <div>
-                    <div>Nome: {pokemon.name}</div>
-                    <div>Peso: {pokemon.weight}</div>
-                    <img src={pokemon.sprites.front_default} alt={pokemon.name} />
-                </div>
-            ) : null}
         </div>
     )
 }
